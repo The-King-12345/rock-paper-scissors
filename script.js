@@ -48,13 +48,16 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function getInput() {
-  const inputValue = prompt('Rock, Paper, Scissors!');
-  if ((inputValue != null) && ((fixCase(inputValue) === 'Rock') || (fixCase(inputValue) === 'Paper') || (fixCase(inputValue) === 'Scissors'))) {
-    return inputValue;
+  let inputValue;
+  do {
+    inputValue = prompt('Enter either Rock, Paper, or Scissors!');
+  } while (inputValue && fixCase(inputValue) !== 'Rock' && fixCase(inputValue) !== 'Paper' && fixCase(inputValue) !== 'Scissors')
+  
+  if (inputValue) {
+    return fixCase(inputValue);
+  } else {
+    return 'Exit';
   }
-
-  alert('Please enter either Rock, Paper, or Scissors')
-  return getInput();
 }
 
 function game () {
@@ -62,6 +65,9 @@ function game () {
 
   while ((playerScore < 5) && (computerScore < 5)) {
     const playerSelection = getInput();
+    if (playerSelection === 'Exit') {
+      return
+    }
     const computerSelection = getComputerChoice();
 
     alert(playRound(playerSelection, computerSelection));

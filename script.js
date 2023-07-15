@@ -13,7 +13,8 @@ function getComputerChoice() {
 }
 
 function fixCase(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  const stringLowerCase = string.toLowerCase();
+  return stringLowerCase.charAt(0).toUpperCase() + stringLowerCase.slice(1);
 }
 
 function changeScore(value) {
